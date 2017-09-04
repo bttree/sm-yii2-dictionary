@@ -15,7 +15,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a(Yii::t('smy.dictionary', 'Create Dictionary'), ['create'], ['class' => 'btn btn-success']) ?>
-        <?= Html::a(Yii::t('smy.dictionary', 'Dictionary Items'), ['dictionary-item/index'], ['class' => 'btn btn-info']) ?>
+        <?= Html::a(Yii::t('smy.dictionary', 'Dictionary Items'),
+                    ['/smydictionary/dictionary-item/index'],
+                    ['class' => 'btn btn-info']) ?>
     </p>
 
     <?= GridView::widget([
