@@ -82,11 +82,11 @@ class Dictionary extends ActiveRecord
      */
     public static function getAllArrayForSelect($id = null)
     {
-        $query = self::find();
+        $query = self::find()->select(['id', 'name' => 'CONCAT(name, " (", slug, ")")']);
         if (!empty($id)) {
             $query->where(['!=', 'id', $id]);
         }
 
-        return ArrayHelper::map($query->orderBy('id')->asArray()->all(), 'id', 'name');
+        return ArrayHelper::map($query->orderBy('id')->all(), 'id', 'name');
     }
 }

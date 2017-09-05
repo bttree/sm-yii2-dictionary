@@ -2,6 +2,7 @@
 
 namespace bttree\smydictionary\controllers;
 
+use bttree\smydictionary\models\SearchDictionaryItem;
 use bttree\smywidgets\actions\GetModelSlugAction;
 use Yii;
 use bttree\smydictionary\models\DictionaryItem;
@@ -70,13 +71,13 @@ class DictionaryItemController extends Controller
      */
     public function actionIndex()
     {
-        $dataProvider = new ActiveDataProvider([
-                                                   'query' => DictionaryItem::find(),
-                                               ]);
+        $searchModel  = new SearchDictionaryItem();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index',
                              [
                                  'dataProvider' => $dataProvider,
+                                 'searchModel'  => $searchModel,
                              ]);
     }
 
