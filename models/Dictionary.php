@@ -89,4 +89,59 @@ class Dictionary extends ActiveRecord
 
         return ArrayHelper::map($query->orderBy('id')->all(), 'id', 'name');
     }
+
+    /**
+     * @param array   $slugs
+     * @param boolean $activeItems
+     * @return array DictionaryItem[]
+     */
+    public static function getItemsByDictionaries($slugs = [], $activeItems = true)
+    {
+        $query = self::find()
+                     ->joinWith('dictionaryItems di')
+                     ->where([
+                                 'dictionary.slug' => $slugs
+                             ]);
+
+        if ($activeItems) {
+            $query->andWhere(['di.status' => DictionaryItem::STATUS_ACTIVE]);
+        }
+
+        /** @var $dictionaries Dictionary[] */
+        $dictionaries = ArrayHelper::index($query->all(), 'slug');
+
+        $items = [];
+        foreach ($slugs as $slug) {
+            if (!empty($dictionaries[$slug])) {
+                $items[$slug] = $dictionaries[$slug]->dictionaryItems;
+            } else {
+                $items[$slug] = [];
+            }
+        }
+
+        return $items;
+    }
+
+    /**
+     * @param array   $slugs
+     * @param boolean $activeItems
+     * @return array Dictionary[]
+     */
+    public static function getDictionariesWithItems($slugs = [], $activeItems = true)
+    {
+        $query = self::find()
+                     ->joinWith('dictionaryItems di')
+                     ->where([
+                                 'dictionary.slug' => $slugs
+                             ]);
+
+        if ($activeItems) {
+            $query->andWhere(['di.status' => DictionaryItem::STATUS_ACTIVE]);
+        }
+
+        /** @var $dictionaries Dictionary[] */
+        $dictionaries = ArrayHelper::index($query->all(), 'slug');
+
+        return $dictionaries;
+    }
 }
