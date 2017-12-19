@@ -50,7 +50,8 @@ class Dictionary extends ActiveRecord
                 'class'         => SluggableBehavior::className(),
                 'attribute'     => 'name',
                 'slugAttribute' => 'slug',
-                'ensureUnique'  => true
+                'ensureUnique'  => true,
+                'immutable'     => true,
             ],
         ];
     }
