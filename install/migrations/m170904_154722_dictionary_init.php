@@ -1,8 +1,13 @@
 <?php
+namespace bttree\smydictionary\install\migrations;
 
 use yii\db\Migration;
 use bttree\smydictionary\models\DictionaryItem;
 
+/**
+ * Class m170904_154722_dictionary_init
+ * @package bttree\smydictionary\install\migrations
+ */
 class m170904_154722_dictionary_init extends Migration
 {
     public function safeUp()
