@@ -6,7 +6,7 @@
   ],
   "homepage": "https://bitbucket.org/bttree/sm-yii2-dictionary",
   "type": "yii2-extension",
-  "license": "BSD-3",
+  "license": "SPDX",
   "authors": [
     {
       "name": "Anton Sitnikov",
