@@ -1,5 +1,4 @@
 <?php
-namespace bttree\smydictionary\install\migrations;
 
 use yii\db\Migration;
 use bttree\smydictionary\models\DictionaryItem;
